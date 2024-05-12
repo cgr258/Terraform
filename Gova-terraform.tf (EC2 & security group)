@@ -13,6 +13,15 @@ access_key = "***************"
 secret_key = "***************************"
 }
 
+resource "aws_instance" "govainstance" {
+ami = "ami-013e83f579886baeb"
+instance_type = "t2.micro"
+tags = {
+Name = "Govaterraformexpo"
+}
+vpc_security_group_ids = [aws_security_group.main.id]
+}
+
 resource "aws_security_group" "main" {
         egress {
         cidr_blocks = ["0.0.0.0/0"]
