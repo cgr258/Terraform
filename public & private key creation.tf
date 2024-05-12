@@ -4,7 +4,6 @@ rsa_bits = 4096
 }
 
 resource "aws_key_pair" "publickey" {
-key_name = "terraform_demo_key_pairs"
 public_key = tls_private_key.terraform_private_key.public_key_openssh
 
 provisioner "local-exec" {
@@ -14,3 +13,14 @@ chmod 400 aws_key_pairs.pem
 EOT
 }
 }
+
+
+
+
+
+end
+
+
+
+
+in instance block resource key_name = aws_key_pair.publickey.id
