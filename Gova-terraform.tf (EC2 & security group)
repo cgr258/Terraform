@@ -1,0 +1,35 @@
+terraform {
+required_providers {
+aws = {
+source = "hashicorp/aws"
+version = "~>5.0"
+}
+}
+}
+
+provider "aws" {
+region = "ap-south-1"
+access_key = "***************"
+secret_key = "***************************"
+}
+
+resource "aws_security_group" "main" {
+        egress {
+        cidr_blocks = ["0.0.0.0/0"]
+        description = "Gova egress"
+        from_port = 0
+        to_port = 0
+        protocol = "-1"
+        }
+        ingress {
+        cidr_blocks = ["0.0.0.0/0"]
+        description = "Allowed ssh port over internet"
+        from_port = 22
+        to_port = 22
+        protocol = "tcp"
+        }
+}
+
+output "publicip" {
+value = aws_instance.govainstance.public_ip
+}
