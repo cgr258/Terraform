@@ -15,6 +15,6 @@ resource "aws_eip" "eip" {
   vpc = true
 }
 resource "aws_eip_association" "eip_assoc" {
-  instance_id   = aws_instance.Terraform-Assgn2.id
+  instance_id   = aws_instance.assignment2.id
   allocation_id = aws_eip.eip.id
 }
