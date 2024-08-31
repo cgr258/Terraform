@@ -1,0 +1,18 @@
+provider "aws" {
+  region = "us-east-2"
+    access_key = "**********"
+    secret_key = "*************************"
+}
+resource "aws_instance" "assignment5" {
+  ami = "ami-085f9c64a9b75eed5"
+  instance_type = "t2.micro"
+  key_name = "Gova-ohio-keypair"
+  user_data = "${file("install-apache2.sh")}"
+  tags = {
+    Name = "Terraform-Assgn5"
+  }
+}
+
+output "publicip" {
+value = aws_instance.assignment5.public_ip
+}
